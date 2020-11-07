@@ -5,8 +5,23 @@ insert into dim_race (race)
 select distinct race from temp_dataset;
 
 -- populate dim_age
-insert into dim_age (age)
-select distinct age from temp_dataset;
+insert into dim_age (age, age_range)
+select distinct age, 
+	case
+		when age between 0 and 9 then '0s'
+		when age between 10 and 19 then '10s'
+		when age between 20 and 29 then '20s'
+		when age between 30 and 39 then '30s'
+		when age between 40 and 49 then '40s'
+		when age between 50 and 59 then '50s'
+		when age between 60 and 69 then '60s'
+		when age between 70 and 79 then '70s'
+		when age between 80 and 89 then '80s'
+		when age between 90 and 99 then '90s'
+		when age between 100 and 109 then '100s'
+		else 'N/A'
+    end as 'age_range'
+from temp_dataset;
 
 -- populate dim_gender
 insert into dim_gender (gender)
