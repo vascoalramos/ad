@@ -17,7 +17,7 @@ from facts_fatal_police_shooting as f
 group by city, race, gender
 order by `#incidents` desc;
 
--- see the percentage of incidents that occur depending on whetfer the police officer has the body camera on or not
+-- see the percentage of incidents that occur depending on whether the police officer has the body camera on or not
 select body_camera, (count(victim_id) / temp.total_incidents) * 100 as `incidents (%)`
 from facts_fatal_police_shooting as f
 	join dim_body_camera as dbc on f.id_dim_body_camera = dbc.id
